@@ -4,6 +4,8 @@
 
 #### 从任意位置加载动态链接库
 
+（windows测试通过）
+
 以含有目标动态库的文件夹为参数创建NativeLoader，并调用方法load即可加载。
 
 如果动态链接库含有依赖动态库或者区分32和64位这样的，就需要一些描述文件：
@@ -32,3 +34,21 @@ module.json
 }
 ```
 请使用含有module.json的文件夹名作为类库名加载这种类库。
+
+example：
+从zip解压并加载：
+```java
+NativeLoader loader = new NativeLoader(new File("."));
+loader.load("aria2.zip");
+```
+
+从目录直接加载：
+```java
+NativeLoader loader = new NativeLoader(new File("."));
+loader.load("libaria");
+```
+
+恩，这里的例子是aria2的一个jni，目前正在做的东西，准备为他提供一个jni接口方便java
+使用，其实这个project就是为了方便我自己加载aria2的NativeLibrary的。
+
+至于后续，如果我还打算做classLoader或者其他NativeLoader的话，就放在这个里面。
