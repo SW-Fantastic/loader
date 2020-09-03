@@ -75,7 +75,7 @@ public class NativeLoader {
             if (lib.getArch() != bit) {
                 continue;
             }
-            if (!sysName.contains(sysName)) {
+            if (!sysName.contains(lib.getPlatform())) {
                 continue;
             }
             lib.setModuleFolder(target);
